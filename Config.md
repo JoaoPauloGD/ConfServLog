@@ -6,20 +6,20 @@ Primeiramente, escolhi um dos computadores da rede para funcionar como servidor 
 2- Configuração do Servidor
 2.1- Habilitação do recebimento por UDP e TCP
 
-Acessei o arquivo de configuração principal do rsyslog com o seguinte comando:
-bash
-CopiarEditar
-sudo nano /etc/rsyslog.conf
-
-Dentro do arquivo, adicionei as linhas que habilitam o recebimento de mensagens pelas portas padrão 514, tanto para UDP quanto para TCP:
-
-bash
-CopiarEditar
-module(load="imudp")
-input(type="imudp" port="514")
-
-module(load="imtcp")
-input(type="imtcp" port="514")
+    Acessei o arquivo de configuração principal do rsyslog com o seguinte comando:
+    bash
+    CopiarEditar
+    sudo nano /etc/rsyslog.conf
+    
+    Dentro do arquivo, adicionei as linhas que habilitam o recebimento de mensagens pelas portas padrão 514, tanto para UDP quanto para TCP:
+    
+    bash
+    CopiarEditar
+    module(load="imudp")
+    input(type="imudp" port="514")
+    
+    module(load="imtcp")
+    input(type="imtcp" port="514")
 
 2.2- Criação do diretório de logs remotos
 Em seguida, criei o diretório onde os logs dos clientes serão armazenados:
