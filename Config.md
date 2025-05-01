@@ -1,4 +1,5 @@
 Configuração 
+
 1. Escolha do Servidor de Logs
 Primeiramente, escolhi um dos computadores da rede para funcionar como servidor central de logs. É nele que todos os registros enviados pelos outros PCs serão armazenados.
 
