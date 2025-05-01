@@ -1,11 +1,14 @@
 Configuração 
 
 1- Escolha do Servidor de Logs
+
 Primeiramente, escolhi um dos computadores da rede para funcionar como servidor central de logs. É nele que todos os registros enviados pelos outros PCs serão armazenados.
 
 2- Configuração do Servidor
+
 2.1- Habilitação do recebimento por UDP e TCP
-    Acessei o arquivo de configuração principal do rsyslog com o seguinte comando:
+
+Acessei o arquivo de configuração principal do rsyslog com o seguinte comando:
     
     bash
     CopiarEditar
@@ -22,13 +25,15 @@ Dentro do arquivo, adicionei as linhas que habilitam o recebimento de mensagens 
     input(type="imtcp" port="514")
 
 2.2- Criação do diretório de logs remotos
-        Em seguida, criei o diretório onde os logs dos clientes serão armazenados:
+
+Em seguida, criei o diretório onde os logs dos clientes serão armazenados:
         
         bash
         CopiarEditar
         sudo mkdir -p /var/log/remotelogs
 
 2.3- Adição da regra de armazenamento
+
 Depois disso, criei um novo arquivo de configuração com:
 
         bash
@@ -43,6 +48,7 @@ E adicionei a seguinte linha, que define onde os logs recebidos serão salvos, s
         *.* ?RemoteLogs
 
 2.4- Reinicialização do rsyslog
+
 Para aplicar todas as alterações, reiniciei o serviço:
 
         bash
@@ -51,6 +57,7 @@ Para aplicar todas as alterações, reiniciei o serviço:
 
 
 3- Configuração dos Clientes
+
 3.1- Configuração do envio de logs
 
 Nos computadores clientes, editei o mesmo arquivo /etc/rsyslog.conf com:
@@ -66,6 +73,7 @@ E, no final do arquivo, adicionei a linha que direciona os logs para o servidor 
         *.* @IP_DO_SERVIDOR:514
 
 3.2- Reinicialização do serviço rsyslog
+
 Depois de feita a configuração, reiniciei o serviço rsyslog em cada cliente:
 
         bash
@@ -73,6 +81,7 @@ Depois de feita a configuração, reiniciei o serviço rsyslog em cada cliente:
         sudo systemctl restart rsyslog
 
 4- Testando o Funcionamento
+
 4.1- Enviando mensagem de teste
 
 Então, para testar se está tudo funcionando, usei o comando logger em um dos clientes para gerar uma mensagem de log:
